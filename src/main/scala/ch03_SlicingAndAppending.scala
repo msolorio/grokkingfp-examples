@@ -27,3 +27,31 @@ object ch03_SlicingAndAppending extends App {
   assert(movedFirstTwoToTheEnd(List("a", "b", "c")) == List("c", "a", "b"))
   assert(insertedBeforeLast(List("a", "b"), "c") == List("a", "c", "b"))
 }
+
+
+
+object ch03_Abbreviate extends App {
+  def abbreviate(fullName: String): String = {
+    val namesList = fullName.split(" ").toList
+    val firstInitial = fullName.slice(0, 1)
+    val lastName = namesList.apply(1)
+
+    firstInitial + ". " + lastName
+  }
+}
+
+object ch03_ListPractice extends App {
+  def firstTwoToEnd(ogList: List[String]): List[String] = {
+    val firstTwo = ogList.slice(0, 2)
+    val remaining = ogList.slice(2, ogList.size)
+
+    remaining.appendedAll(firstTwo)
+  }
+
+  def insertedBeforeLast(ogList: List[String], item: String): List[String] = {
+    val insertBefore = ogList.slice(0, ogList.size - 1)
+    val insertAfter = ogList.apply(ogList.size - 1)
+
+    insertBefore.appended(item).appended(insertAfter)
+  }
+}
